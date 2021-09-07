@@ -1,33 +1,29 @@
 import React, {useState, useEffect, useReducer } from "react";
 import axios from "axios";
-import EmployeeTableListSemUI from "./EmployeeTableListSemUI";
+import SkillTableListSemUI from "./SkillTableListSemUI";
 import EmployeeInputSearchSemUI from "./EmployeeInputSearchSemUI"
 import CustomLoader  from './CustomLoader'
 
 const InitFormValue = {   
-	searchStringEmpNo: "",
-	searchStringEmpLastName : "",
-	searchStringEmpFirstName : "",
-	searchStringEmpMiddleName : "",
+	searchStringSkillCode: "",
+	searchStringskillDescr : ""
 };
 
-const EmployeeList = ( props) => {
+const SkillList = ( props) => {
 	const [inputSearch, setInputSearch] = useReducer((state, newState) => ({ ...state, ...newState }), InitFormValue);
 	const [inputFormValue, setInputFormValue] = useReducer((state, newState) => ({ ...state, ...newState }), InitFormValue);
-	const [employees, setEmployees] = useState([]);
+	const [skills, setSkills] = useState([]);
 	const [showLoader, setShowLoader] = useState(false)
 
-	console.log("Start EmployeesList");
+	console.log("Start SkillList");
 	console.log(props.userAccessRight)
 
 	useEffect(() => {
-		var url = 'https://localhost:5001/api/Employee/GetEmployeeList'
+		var url = 'https://localhost:5001/api/Skill/GetSkillList'
 
 		const data = { 
-			"EmpNo" 	 : inputSearch.searchStringEmpNo,
-			"EmpLastName" : inputSearch.searchStringEmpLastName, 
-			"EmpFirstName" 	 : inputSearch.searchStringEmpFirstName,
-			"EmpMiddleName"   : inputSearch.searchStringEmpMiddleName
+			"SkillCode" 	: inputSearch.searchStringSkillCode,
+			"SkillDescr" 	: inputSearch.searchStringskillDescr 
 		};
 		  
 		console.log("Data")
@@ -42,13 +38,13 @@ const EmployeeList = ( props) => {
 		})
 		.then(
 			
-			employees => {
+			skills => {
 				setShowLoader(false)
-				setEmployees(employees.data)
+				setSkills(skills.data)
 			}
 		)
 		.catch( error => { 
-			console.log("Employee error.request = " + error.request)
+			console.log("Skills error.request = " + error.request)
 			if (error.response) {
 			  // The request was made and the server responded with a status code
 			  // that falls out of the range of 2xx
@@ -92,19 +88,20 @@ const EmployeeList = ( props) => {
 			setInputSearch ({searchStringProjType : inputFormValue.searchStringProjType});	
 		}
 
-		console.log( ' handleSubmit EmployeeeList ');
+		console.log( ' handleSubmit SkillList ');
 		console.log(inputSearch)
 		
 	}
+
+	//<EmployeeInputSearchSemUI SubmitHandler={handleSubmit} OnChangeHandler={handleChange} OnhandleReset={handleReset} inputFormValue={inputFormValue} />
 	
     return (	
 		<div>
-			<EmployeeInputSearchSemUI SubmitHandler={handleSubmit} OnChangeHandler={handleChange} OnhandleReset={handleReset} inputFormValue={inputFormValue} />
-			<EmployeeTableListSemUI employees={employees} setMsgBar={props.setMsgBar} userAccessRights={props.userAccessRights}/>
+			<SkillTableListSemUI skills={skills} setMsgBar={props.setMsgBar} userAccessRights={props.userAccessRights}/>
 		    <CustomLoader active={showLoader} size={'small'}/>
 		</div>
 		
     );
 }
  
-export default EmployeeList;
+export default SkillList;

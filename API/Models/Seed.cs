@@ -29,6 +29,13 @@ namespace Models
                     ModuleName = "Employee",
                     ModuleComponent = "EmployeeList",
                     ModuleComponentPath = "/EmployeeList",
+                    ModuleSortId = 20
+                });
+                context.Modules.Add(new Module
+                {
+                    ModuleName = "Skill",
+                    ModuleComponent = "SkillList",
+                    ModuleComponentPath = "/SkillList",
                     ModuleSortId = 30
                 });
                 
@@ -50,6 +57,12 @@ namespace Models
                 {
                     Username = "user1",
                     Password = "user1",
+                    EmployeeID = 2
+                });
+                 context.Users.Add(new User
+                {
+                    Username = "user2",
+                    Password = "user2",
                     EmployeeID = 2
                 });
                 context.SaveChanges();
@@ -76,6 +89,16 @@ namespace Models
                     AllowUpdate = "Y",
                     AllowDelete = "Y"
                 });
+                // Admin -> Skill
+                context.UsersAccess.Add(new UserAccess
+                {
+                    UserId = 1,
+                    ModuleId = 3,
+                    AllowView = "Y",
+                    AllowInsert = "Y",
+                    AllowUpdate = "Y",
+                    AllowDelete = "Y"
+                });
                 // user1 -> Home
                 context.UsersAccess.Add(new UserAccess
                 {
@@ -91,6 +114,27 @@ namespace Models
                 {
                     UserId = 2,
                     ModuleId = 2,
+                    AllowView = "Y",
+                    AllowInsert = "Y",
+                    AllowUpdate = "Y",
+                    AllowDelete = "Y"
+                });
+                // user1 -> Employee
+                context.UsersAccess.Add(new UserAccess
+                {
+                    UserId = 2,
+                    ModuleId = 3,
+                    AllowView = "Y",
+                    AllowInsert = "Y",
+                    AllowUpdate = "Y",
+                    AllowDelete = "Y"
+                });
+
+                // user2 -> Home
+                context.UsersAccess.Add(new UserAccess
+                {
+                    UserId = 3,
+                    ModuleId = 1,
                     AllowView = "Y",
                     AllowInsert = "Y",
                     AllowUpdate = "Y",
@@ -377,6 +421,193 @@ namespace Models
                 });
                 context.SaveChanges();
             }
+
+            if (context.Skills.Count() == 0)
+            {
+                context.Skills.Add(new Skill
+                {
+                    SkillCode = "ASP",
+                    SkillDescr = "MS Active Server Page classic",
+                });
+
+                 context.Skills.Add(new Skill
+                {
+                    SkillCode = "ASPDOTMET",
+                    SkillDescr = "MS Active Server Page Dot Net",
+                });
+
+                 context.Skills.Add(new Skill
+                {
+                    SkillCode = "CBL",
+                    SkillDescr = "COBOL Common Business Language",
+                });
+
+                context.Skills.Add(new Skill
+                {
+                    SkillCode = "CSS",
+                    SkillDescr = "Cascading Style Sheets",
+                });
+
+                 context.Skills.Add(new Skill
+                {
+                    SkillCode = "CSHARP",
+                    SkillDescr = "C Sharp",
+                });
+
+                context.Skills.Add(new Skill
+                {
+                    SkillCode = "HTML50",
+                    SkillDescr = "Hyper Text Markup Language 5.0",
+                });
+
+                context.Skills.Add(new Skill
+                {
+                    SkillCode = "JAVAN",
+                    SkillDescr = "Java Native",
+                });
+
+                context.Skills.Add(new Skill
+                {
+                    SkillCode = "JS",
+                    SkillDescr = "JavaScript",
+                });
+
+                context.Skills.Add(new Skill
+                {
+                    SkillCode = "JSQ",
+                    SkillDescr = "JQuery",
+                });
+
+                context.Skills.Add(new Skill
+                {
+                    SkillCode = "MSSQLSVR",
+                    SkillDescr = "Microsoft SQL Server",
+                });
+
+                 context.Skills.Add(new Skill
+                {
+                    SkillCode = "MSSQLSVRAD",
+                    SkillDescr = "Microsoft SQL Server Administrator",
+                });
+
+                context.Skills.Add(new Skill
+                {
+                    SkillCode = "ORADB",
+                    SkillDescr = "ORACLE Database",
+                });
+
+                context.Skills.Add(new Skill
+                {
+                    SkillCode = "ORADBAD",
+                    SkillDescr = "ORACLE Database Administrator",
+                });
+
+                context.Skills.Add(new Skill
+                {
+                    SkillCode = "ORAPLSQL",
+                    SkillDescr = "ORACLE PL SQL",
+                });
+
+                context.Skills.Add(new Skill
+                {
+                    SkillCode = "PHPLAR",
+                    SkillDescr = "PHP Laravel",
+                });
+
+                context.Skills.Add(new Skill
+                {
+                    SkillCode = "PHPN",
+                    SkillDescr = "PHP Native",
+                });
+
+                 context.Skills.Add(new Skill
+                {
+                    SkillCode = "RJS",
+                    SkillDescr = "React JS",
+                });
+
+                context.Skills.Add(new Skill
+                {
+                    SkillCode = "VB60",
+                    SkillDescr = "MS Visual Basic 6.0",
+                });
+                context.SaveChanges();
+            }
+
+            if (context.EmployeeSkillSets.Count() == 0)
+            {
+                context.EmployeeSkillSets.Add(new EmployeeSkillSet
+                {
+                    EmployeeId = 1,
+                    SkillId = 1,
+                    ProficiencyLevel = 8
+                });
+
+                context.EmployeeSkillSets.Add(new EmployeeSkillSet
+                {
+                    EmployeeId = 1,
+                    SkillId = 2,
+                    ProficiencyLevel = 9
+                });
+
+                context.EmployeeSkillSets.Add(new EmployeeSkillSet
+                {
+                    EmployeeId = 1,
+                    SkillId = 3,
+                    ProficiencyLevel = 10
+                });
+
+                 context.EmployeeSkillSets.Add(new EmployeeSkillSet
+                {
+                    EmployeeId = 1,
+                    SkillId = 4,
+                    ProficiencyLevel = 7
+                });
+
+                 context.EmployeeSkillSets.Add(new EmployeeSkillSet
+                {
+                    EmployeeId = 1,
+                    SkillId = 5,
+                    ProficiencyLevel = 5
+                });
+
+
+                 context.EmployeeSkillSets.Add(new EmployeeSkillSet
+                {
+                    EmployeeId = 2,
+                    SkillId = 6,
+                    ProficiencyLevel = 7
+                });
+
+                context.EmployeeSkillSets.Add(new EmployeeSkillSet
+                {
+                    EmployeeId = 2,
+                    SkillId = 7,
+                    ProficiencyLevel = 8
+                });
+
+                context.EmployeeSkillSets.Add(new EmployeeSkillSet
+                {
+                    EmployeeId = 2,
+                    SkillId = 8,
+                    ProficiencyLevel = 9
+                });
+
+                 context.EmployeeSkillSets.Add(new EmployeeSkillSet
+                {
+                    EmployeeId = 2,
+                    SkillId = 9,
+                    ProficiencyLevel = 10
+                });
+
+                 context.EmployeeSkillSets.Add(new EmployeeSkillSet
+                {
+                    EmployeeId = 2,
+                    SkillId = 11,
+                    ProficiencyLevel = 2
+                });
+                context.SaveChanges();
+            }   
         }
     }
 }

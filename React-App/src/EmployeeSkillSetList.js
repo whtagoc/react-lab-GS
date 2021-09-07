@@ -1,33 +1,29 @@
 import React, {useState, useEffect, useReducer } from "react";
 import axios from "axios";
-import EmployeeTableListSemUI from "./EmployeeTableListSemUI";
+import EmployeeSkillSetTableListSemUI from "./EmployeeSkillSetTableListSemUI";
 import EmployeeInputSearchSemUI from "./EmployeeInputSearchSemUI"
 import CustomLoader  from './CustomLoader'
 
 const InitFormValue = {   
-	searchStringEmpNo: "",
-	searchStringEmpLastName : "",
-	searchStringEmpFirstName : "",
-	searchStringEmpMiddleName : "",
+	searchStringSkillCode: "",
+	searchStringskillDescr : ""
 };
 
-const EmployeeList = ( props) => {
+const EmployeeSkillSetList = ( props) => {
 	const [inputSearch, setInputSearch] = useReducer((state, newState) => ({ ...state, ...newState }), InitFormValue);
 	const [inputFormValue, setInputFormValue] = useReducer((state, newState) => ({ ...state, ...newState }), InitFormValue);
-	const [employees, setEmployees] = useState([]);
+	const [empSkillSets, setEmpSkillSets] = useState([]);
 	const [showLoader, setShowLoader] = useState(false)
+	const [reloadEmpSkillSetList, setReloadEmpSkillSetList] = useState(null);
 
-	console.log("Start EmployeesList");
+	console.log("Start EmployeeSkillSetList");
 	console.log(props.userAccessRight)
 
 	useEffect(() => {
-		var url = 'https://localhost:5001/api/Employee/GetEmployeeList'
+		var url = 'https://localhost:5001/api/EmployeeSkillSet/GetEmployeeSkillSets'
 
 		const data = { 
-			"EmpNo" 	 : inputSearch.searchStringEmpNo,
-			"EmpLastName" : inputSearch.searchStringEmpLastName, 
-			"EmpFirstName" 	 : inputSearch.searchStringEmpFirstName,
-			"EmpMiddleName"   : inputSearch.searchStringEmpMiddleName
+			"EmpId" 	 :  props.employee.id 
 		};
 		  
 		console.log("Data")
@@ -42,13 +38,13 @@ const EmployeeList = ( props) => {
 		})
 		.then(
 			
-			employees => {
+			empSkillSets => {
 				setShowLoader(false)
-				setEmployees(employees.data)
+				setEmpSkillSets(empSkillSets.data)
 			}
 		)
 		.catch( error => { 
-			console.log("Employee error.request = " + error.request)
+			console.log("Skills error.request = " + error.request)
 			if (error.response) {
 			  // The request was made and the server responded with a status code
 			  // that falls out of the range of 2xx
@@ -68,7 +64,7 @@ const EmployeeList = ( props) => {
 		});
 		
 
-	}, [inputSearch,props.setMsgBar]);
+	}, [inputSearch,props.setMsgBar,reloadEmpSkillSetList]);
 
 
 	const handleChange = (e, { name, value }) => {
@@ -92,19 +88,27 @@ const EmployeeList = ( props) => {
 			setInputSearch ({searchStringProjType : inputFormValue.searchStringProjType});	
 		}
 
-		console.log( ' handleSubmit EmployeeeList ');
+		console.log( ' handleSubmit SkillList ');
 		console.log(inputSearch)
 		
 	}
+
+	//<EmployeeInputSearchSemUI SubmitHandler={handleSubmit} OnChangeHandler={handleChange} OnhandleReset={handleReset} inputFormValue={inputFormValue} />
 	
     return (	
 		<div>
-			<EmployeeInputSearchSemUI SubmitHandler={handleSubmit} OnChangeHandler={handleChange} OnhandleReset={handleReset} inputFormValue={inputFormValue} />
-			<EmployeeTableListSemUI employees={employees} setMsgBar={props.setMsgBar} userAccessRights={props.userAccessRights}/>
+			<EmployeeSkillSetTableListSemUI 
+				employee={props.employee}
+				empSkillSets={empSkillSets} 
+				setMsgBar={props.setMsgBar} 
+				userAccessRights={props.userAccessRights}
+				setReloadEmpSkillSetList={setReloadEmpSkillSetList}
+				listMode={props.listMode}
+			/>
 		    <CustomLoader active={showLoader} size={'small'}/>
 		</div>
 		
     );
 }
  
-export default EmployeeList;
+export default EmployeeSkillSetList;

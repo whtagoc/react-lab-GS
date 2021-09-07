@@ -19,6 +19,8 @@ import Home from "./Home";
 import UsersAccessList from "./UsersAccessList";
 import EmployeeList from "./EmployeeList";
 import EmployeeAVEDTabs from "./EmployeeAVEDTabs";
+import SkillList from "./SkillList";
+import SkillAVEDTabs from "./SkillAVEDTabs";
 
 const VerticalSidebar = ({ animation, direction, visible,userAccessRights, isLogin }) => {
   console.log("VerticalSidebar function component")
@@ -158,12 +160,17 @@ const VerticalSideBarMenu = props => {
             <HashRouter>
             <div>
 				<Route exact path="/"/> 
-               <Route exact path="/Home" component={Home}/> 
-               <Route path="/EmployeeList" render={(props) => <EmployeeList {...props} setMsgBar={setMsgBar} userAccessRights={userAccessRights} sLogin={isLogin} />} />
-               <Route path="/EmployeeView/:id" render={(props) => <EmployeeAVEDTabs {...props} setMsgBar={setMsgBar} userAccessRights={userAccessRights} isLogin={isLogin} tabMode={"View"} />} />
-               <Route path="/EmployeeEdit/:id" render={(props) => <EmployeeAVEDTabs {...props} setMsgBar={setMsgBar} userAccessRights={userAccessRights} isLogin={isLogin} tabMode={"Edit"} />} />
-               <Route path="/EmployeeDelete/:id" render={(props) => <EmployeeAVEDTabs {...props} setMsgBar={setMsgBar} userAccessRights={userAccessRights} isLogin={isLogin} tabMode={"Delete"} />} />	
-               <Route path="/EmployeeAdd" render={(props) => <EmployeeAVEDTabs {...props} setMsgBar={setMsgBar} userAccessRights={userAccessRights} isLogin={isLogin} tabMode={"Add"} />} />	    
+              <Route exact path="/Home" component={Home}/> 
+              <Route path="/EmployeeList" render={(props) => <EmployeeList {...props} setMsgBar={setMsgBar} userAccessRights={userAccessRights} sLogin={isLogin} />} />
+              <Route path="/EmployeeView/:id" render={(props) => <EmployeeAVEDTabs {...props} setMsgBar={setMsgBar} userAccessRights={userAccessRights} isLogin={isLogin} tabMode={"View"} />} />
+              <Route path="/EmployeeEdit/:id" render={(props) => <EmployeeAVEDTabs {...props} setMsgBar={setMsgBar} userAccessRights={userAccessRights} isLogin={isLogin} tabMode={"Edit"} />} />
+              <Route path="/EmployeeDelete/:id" render={(props) => <EmployeeAVEDTabs {...props} setMsgBar={setMsgBar} userAccessRights={userAccessRights} isLogin={isLogin} tabMode={"Delete"} />} />	
+              <Route path="/EmployeeAdd" render={(props) => <EmployeeAVEDTabs {...props} setMsgBar={setMsgBar} userAccessRights={userAccessRights} isLogin={isLogin} tabMode={"Add"} />} />
+              <Route path="/SkillList" render={(props) => <SkillList {...props} setMsgBar={setMsgBar} userAccessRights={userAccessRights} sLogin={isLogin} />} />
+              <Route path="/SkillView/:id" render={(props) => <SkillAVEDTabs {...props} setMsgBar={setMsgBar} userAccessRights={userAccessRights} isLogin={isLogin} tabMode={"View"} />} />
+              <Route path="/SkillEdit/:id" render={(props) => <SkillAVEDTabs {...props} setMsgBar={setMsgBar} userAccessRights={userAccessRights} isLogin={isLogin} tabMode={"Edit"} />} />
+              <Route path="/SkillDelete/:id" render={(props) => <SkillAVEDTabs {...props} setMsgBar={setMsgBar} userAccessRights={userAccessRights} isLogin={isLogin} tabMode={"Delete"} />} />
+              <Route path="/SkillAdd" render={(props) => <SkillAVEDTabs {...props} setMsgBar={setMsgBar} userAccessRights={userAccessRights} isLogin={isLogin} tabMode={"Add"} />} />
             </div>
           </HashRouter>
           </Segment>

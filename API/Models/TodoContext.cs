@@ -14,6 +14,8 @@ namespace TodoApi.Models
         public DbSet<Gender> Genders { get; set; }
         public DbSet<CivilStatus> CivilStatuses { get; set; }
         public DbSet<Nationality> Nationalities {get; set; }
+        public DbSet<Skill> Skills {get; set; }
+		public DbSet<EmployeeSkillSet> EmployeeSkillSets {get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Module> Modules { get; set; }
         public DbSet<UserAccess> UsersAccess { get; set; }
