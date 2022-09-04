@@ -38,6 +38,13 @@ namespace Models
                     ModuleComponentPath = "/SkillList",
                     ModuleSortId = 30
                 });
+                context.Modules.Add(new Module
+                {
+                    ModuleName = "Project",
+                    ModuleComponent = "ProjectList",
+                    ModuleComponentPath = "/ProjectList",
+                    ModuleSortId = 50
+                });
                 
             }
 
@@ -94,6 +101,16 @@ namespace Models
                 {
                     UserId = 1,
                     ModuleId = 3,
+                    AllowView = "Y",
+                    AllowInsert = "Y",
+                    AllowUpdate = "Y",
+                    AllowDelete = "Y"
+                });
+                 // Admin -> Project
+                context.UsersAccess.Add(new UserAccess
+                {
+                    UserId = 1,
+                    ModuleId = 4,
                     AllowView = "Y",
                     AllowInsert = "Y",
                     AllowUpdate = "Y",
@@ -607,7 +624,230 @@ namespace Models
                     ProficiencyLevel = 2
                 });
                 context.SaveChanges();
+            }
+
+            if (context.ProjectTypes.Count() == 0) {
+                context.ProjectTypes.Add(new ProjectType
+                {
+                    TypeDescription = "Development" 
+                });
+                context.ProjectTypes.Add(new ProjectType
+                {
+                    TypeDescription = "Maintenace and Support" 
+                });
+
+                context.SaveChanges();
             }   
+
+            if (context.ProjectTerms.Count() == 0) {
+                context.ProjectTerms.Add(new ProjectTerms
+                {
+                    TermDescription = "Monthly" 
+                });
+                context.ProjectTerms.Add(new ProjectTerms
+                {
+                    TermDescription = "Quarterly" 
+                });
+                context.ProjectTerms.Add(new ProjectTerms
+                {
+                    TermDescription = "Annually" 
+                });
+
+                context.SaveChanges();
+            }
+
+            if (context.Currencies.Count() == 0) {
+                context.Currencies.Add(new Currency {
+                    CurrencyAbbr = "PHP" ,
+                    CurrencyDescription = "Philippine Peso"
+                });
+                context.Currencies.Add(new Currency {
+                    CurrencyAbbr = "SGD" ,
+                    CurrencyDescription = "Singapore Dollar"
+                });
+                context.Currencies.Add(new Currency {
+                    CurrencyAbbr = "USD" ,
+                    CurrencyDescription = "United State Dollar"
+                });
+                context.Currencies.Add(new Currency {
+                    CurrencyAbbr = "YEN" ,
+                    CurrencyDescription = "Japaness Yen"
+                });
+
+                context.SaveChanges();
+            }
+
+            if (context.ProjectPositions.Count() == 0) { 
+                context.ProjectPositions.Add(new ProjectPosition {
+                    PositionDescription = "Project Group Manager"
+                });
+                context.ProjectPositions.Add(new ProjectPosition {
+                    PositionDescription = "Project Manager"
+                });
+                 context.ProjectPositions.Add(new ProjectPosition {
+                    PositionDescription = "Project Assistant Manager"
+                });
+                context.ProjectPositions.Add(new ProjectPosition {
+                    PositionDescription = "Project Team Leader"
+                });
+                context.ProjectPositions.Add(new ProjectPosition {
+                    PositionDescription = "Project Assistant Team Leader"
+                });
+                context.ProjectPositions.Add(new ProjectPosition {
+                    PositionDescription = "Project Senior Developer"
+                });
+                context.ProjectPositions.Add(new ProjectPosition {
+                    PositionDescription = "Project Junior Developer"
+                });
+                context.ProjectPositions.Add(new ProjectPosition {
+                    PositionDescription = "Bridge Engineer"
+                });
+
+                context.SaveChanges();
+            } 
+
+
+            if (context.Projects.Count() == 0) { 
+                context.Projects.Add(new Project {
+                    Code  = "PROJ-ZOZOTOWN",
+                    CustomerId = 1,
+                    TypeId = 2,
+                    Name = "ZOZOTOWN eCommerce",
+                    Description = "ZOZOTOWN eCommerce enhancement",
+                    BillingCost = decimal.Parse("12345678912.987"),
+                    BillingTermID = 3,
+                    BillingCurrencyId = 4,
+                    ContractStartDate = DateTime.Parse("2019-01-01"),
+                    ContractEndDate =  DateTime.Parse("2020-01-31")
+                });
+                context.Projects.Add(new Project {
+                    Code  = "PROJ-ZOZOLP",
+                    CustomerId = 1,
+                    TypeId = 2,
+                    Name = "ZOZO Landing Page",
+                    Description = "ZOZOT Landing Page Development",
+                    BillingCost = decimal.Parse("12345678912.987"),
+                    BillingTermID = 3,
+                    BillingCurrencyId = 4,
+                    ContractStartDate = DateTime.Parse("2019-01-01"),
+                    ContractEndDate =  DateTime.Parse("2020-01-31")
+                });
+                context.Projects.Add(new Project {
+                    Code  = "PROJ-ZOZOMAT",
+                    CustomerId = 1,
+                    TypeId = 1,
+                    Name = "ZOZO MAT MAT",
+                    Description = "ZOZOT MAT MAT Development",
+                    BillingCost = decimal.Parse("12345678912.987"),
+                    BillingTermID = 3,
+                    BillingCurrencyId = 4,
+                    ContractStartDate = DateTime.Parse("2019-01-01"),
+                    ContractEndDate =  DateTime.Parse("2020-01-31")
+                });
+                context.Projects.Add(new Project {
+                    Code  = "IIOFC123",
+                    CustomerId = 2,
+                    TypeId = 1,
+                    Name = "II OFFICE APPLICATION",
+                    Description = "II OFFICE Development",
+                    BillingCost = decimal.Parse("12345678912.987"),
+                    BillingTermID = 3,
+                    BillingCurrencyId = 4,
+                    ContractStartDate = DateTime.Parse("2019-01-01"),
+                    ContractEndDate =  DateTime.Parse("2020-01-31")
+                });
+                context.SaveChanges();
+            }
+
+            if (context.CustomerCompanies.Count() == 0) { 
+                context.CustomerCompanies.Add(new CustomerCompany {
+                    Code  = "ZOZOCODE123",
+                    Name = "ZOZO COMPANY"
+                } ); 
+                context.CustomerCompanies.Add(new CustomerCompany {
+                    Code  = "IIOFCCODE123",
+                    Name = "II OFFICE"
+                });
+                context.SaveChanges();
+            }
+
+            if (context.ProjectEmpAssigments.Count() == 0) { 
+                context.ProjectEmpAssigments.Add(new ProjectEmpAssigment {
+                    ProjId  = 1,
+                    EmployeeId = 1,
+					PercentageAllocation = 10,
+                    PositionId = 2,
+                    AssignmentStart =  DateTime.Parse("2019-01-01"),
+                    AssignmentEnd = DateTime.Parse("2019-05-31")
+                });
+                context.ProjectEmpAssigments.Add(new ProjectEmpAssigment {
+                    ProjId  = 1, 
+                    EmployeeId = 2,
+					PercentageAllocation = 15,
+                    PositionId = 3,
+                    AssignmentStart =  DateTime.Parse("2019-01-01"),
+                    AssignmentEnd = DateTime.Parse("2019-05-31")
+                });
+                context.ProjectEmpAssigments.Add(new ProjectEmpAssigment {
+                    ProjId  = 1,
+                    EmployeeId = 3,
+					PercentageAllocation = 20,
+                    PositionId = 4,
+                    AssignmentStart =  DateTime.Parse("2019-01-01"),
+                    AssignmentEnd = DateTime.Parse("2019-05-31")
+                });
+  
+                context.ProjectEmpAssigments.Add(new ProjectEmpAssigment {
+                    ProjId  = 2,
+                    EmployeeId = 4,
+					PercentageAllocation = 25,
+                    PositionId = 2,
+                    AssignmentStart =  DateTime.Parse("2019-01-01"),
+                    AssignmentEnd = DateTime.Parse("2019-05-31")
+                });
+                context.ProjectEmpAssigments.Add(new ProjectEmpAssigment {
+                    ProjId  = 2, 
+                    EmployeeId = 5,
+					PercentageAllocation = 30,
+                    PositionId = 3,
+                    AssignmentStart =  DateTime.Parse("2019-01-01"),
+                    AssignmentEnd = DateTime.Parse("2019-05-31")
+                });
+                context.ProjectEmpAssigments.Add(new ProjectEmpAssigment {
+                    ProjId  = 2,
+                    EmployeeId = 6,
+					PercentageAllocation = 35,
+                    PositionId = 4,
+                    AssignmentStart =  DateTime.Parse("2019-01-01"),
+                    AssignmentEnd = DateTime.Parse("2019-05-31")
+                });
+             
+                context.ProjectEmpAssigments.Add(new ProjectEmpAssigment {
+                    ProjId  = 3,
+                    EmployeeId = 7,
+					PercentageAllocation = 40,
+                    PositionId = 2,
+                    AssignmentStart =  DateTime.Parse("2019-01-01"),
+                    AssignmentEnd = DateTime.Parse("2019-05-31")
+                });
+                context.ProjectEmpAssigments.Add(new ProjectEmpAssigment {
+                    ProjId  = 3, 
+                    EmployeeId = 8,
+					PercentageAllocation = 45,
+                    PositionId = 3,
+                    AssignmentStart =  DateTime.Parse("2019-01-01"),
+                    AssignmentEnd = DateTime.Parse("2019-05-31")
+                });
+                context.ProjectEmpAssigments.Add(new ProjectEmpAssigment {
+                    ProjId  = 3,
+                    EmployeeId = 9,
+					PercentageAllocation = 50,
+                    PositionId = 4,
+                    AssignmentStart =  DateTime.Parse("2019-01-01"),
+                    AssignmentEnd = DateTime.Parse("2019-05-31")
+                });
+                context.SaveChanges();
+           }
         }
     }
 }
