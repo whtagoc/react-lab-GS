@@ -64,7 +64,6 @@ namespace TodoApi
             //Commented to Allow CORS on controller level
             //app.UseCors(MyAllowSpecificOrigins);
 
-        
             app.UseMvc();
             app.UseHttpsRedirection();
 
