@@ -8,22 +8,22 @@ const EmployeeInputSearchSemUI = props => {
     const [searchString, setSearchString] = useState('');
 	var tempOption = [];
 
-    useEffect(() => {
-        //var url = 'https://localhost:44367/api/movie/Genre'
-        var url = 'https://localhost:5001/api/movie/Genre'
-        
-        setSearchString('')
-		
-		axios
-		.get(url)
-		.then(Result => SetgenreOption(Result.data));
-		
-    }, [searchString]);
+    //useEffect(() => {
+    //    //var url = 'https://localhost:44367/api/movie/Genre'
+    //    var url = 'https://localhost:5001/api/movie/Genre'
+    //    
+    //    setSearchString('')
+	//	
+	//	axios
+	//	.get(url)
+	//	.then(Result => SetgenreOption(Result.data));
+	//	
+    //}, [searchString]);
     
-    genreOption.map(function (item,i) {
-        tempOption.push({"text":item,"value":item})
-        return 0
-    });
+    //genreOption.map(function (item,i) {
+    //    tempOption.push({"text":item,"value":item})
+    //    return 0
+    //});
     
 
     return (

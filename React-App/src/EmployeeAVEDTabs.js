@@ -2,6 +2,7 @@ import React, { useState, useEffect, useReducer } from 'react'
 import axios from "axios";
 import {Tab} from 'semantic-ui-react'
 import EmployeeAVEDForm from "./EmployeeAVEDForm";
+import EmployeeSkillSetList from "./EmployeeSkillSetList";
 
 const EmployeeAVEDTabs = props => {
   const [employee, setEmployee] = useState([]);
@@ -82,18 +83,18 @@ const EmployeeAVEDTabs = props => {
                                                       </Tab.Pane> },
   ]
   
-  /* 
+  
   if (props.tabMode != "Add") {
-	panes.push({ menuItem: 'Resource Allocation ' + tabMode, render: () => <Tab.Pane>
-                                                        <ProjectEmpAssignmentList
-                                                          project={project}                                                          
+	panes.push({ menuItem: 'Skills Set ' + tabMode, render: () => <Tab.Pane>
+                                                        <EmployeeSkillSetList
+                                                          employee = {employee}                                                 
                                                           userAccessRights={props.userAccessRights}
                                                           setMsgBar={props.setMsgBar}
 														                              listMode={props.tabMode}
                                                         />
                                                         </Tab.Pane> })
   }
-  */
+  
   return (<Tab panes={panes} />)
 
  }

@@ -29,7 +29,21 @@ namespace Models
                     ModuleName = "Employee",
                     ModuleComponent = "EmployeeList",
                     ModuleComponentPath = "/EmployeeList",
+                    ModuleSortId = 20
+                });
+                context.Modules.Add(new Module
+                {
+                    ModuleName = "Skill",
+                    ModuleComponent = "SkillList",
+                    ModuleComponentPath = "/SkillList",
                     ModuleSortId = 30
+                });
+                context.Modules.Add(new Module
+                {
+                    ModuleName = "Project",
+                    ModuleComponent = "ProjectList",
+                    ModuleComponentPath = "/ProjectList",
+                    ModuleSortId = 50
                 });
                 
             }
@@ -50,6 +64,12 @@ namespace Models
                 {
                     Username = "user1",
                     Password = "user1",
+                    EmployeeID = 2
+                });
+                 context.Users.Add(new User
+                {
+                    Username = "user2",
+                    Password = "user2",
                     EmployeeID = 2
                 });
                 context.SaveChanges();
@@ -76,6 +96,26 @@ namespace Models
                     AllowUpdate = "Y",
                     AllowDelete = "Y"
                 });
+                // Admin -> Skill
+                context.UsersAccess.Add(new UserAccess
+                {
+                    UserId = 1,
+                    ModuleId = 3,
+                    AllowView = "Y",
+                    AllowInsert = "Y",
+                    AllowUpdate = "Y",
+                    AllowDelete = "Y"
+                });
+                 // Admin -> Project
+                context.UsersAccess.Add(new UserAccess
+                {
+                    UserId = 1,
+                    ModuleId = 4,
+                    AllowView = "Y",
+                    AllowInsert = "Y",
+                    AllowUpdate = "Y",
+                    AllowDelete = "Y"
+                });
                 // user1 -> Home
                 context.UsersAccess.Add(new UserAccess
                 {
@@ -91,6 +131,27 @@ namespace Models
                 {
                     UserId = 2,
                     ModuleId = 2,
+                    AllowView = "Y",
+                    AllowInsert = "Y",
+                    AllowUpdate = "Y",
+                    AllowDelete = "Y"
+                });
+                // user1 -> Employee
+                context.UsersAccess.Add(new UserAccess
+                {
+                    UserId = 2,
+                    ModuleId = 3,
+                    AllowView = "Y",
+                    AllowInsert = "Y",
+                    AllowUpdate = "Y",
+                    AllowDelete = "Y"
+                });
+
+                // user2 -> Home
+                context.UsersAccess.Add(new UserAccess
+                {
+                    UserId = 3,
+                    ModuleId = 1,
                     AllowView = "Y",
                     AllowInsert = "Y",
                     AllowUpdate = "Y",
@@ -377,6 +438,416 @@ namespace Models
                 });
                 context.SaveChanges();
             }
+
+            if (context.Skills.Count() == 0)
+            {
+                context.Skills.Add(new Skill
+                {
+                    SkillCode = "ASP",
+                    SkillDescr = "MS Active Server Page classic",
+                });
+
+                 context.Skills.Add(new Skill
+                {
+                    SkillCode = "ASPDOTMET",
+                    SkillDescr = "MS Active Server Page Dot Net",
+                });
+
+                 context.Skills.Add(new Skill
+                {
+                    SkillCode = "CBL",
+                    SkillDescr = "COBOL Common Business Language",
+                });
+
+                context.Skills.Add(new Skill
+                {
+                    SkillCode = "CSS",
+                    SkillDescr = "Cascading Style Sheets",
+                });
+
+                 context.Skills.Add(new Skill
+                {
+                    SkillCode = "CSHARP",
+                    SkillDescr = "C Sharp",
+                });
+
+                context.Skills.Add(new Skill
+                {
+                    SkillCode = "HTML50",
+                    SkillDescr = "Hyper Text Markup Language 5.0",
+                });
+
+                context.Skills.Add(new Skill
+                {
+                    SkillCode = "JAVAN",
+                    SkillDescr = "Java Native",
+                });
+
+                context.Skills.Add(new Skill
+                {
+                    SkillCode = "JS",
+                    SkillDescr = "JavaScript",
+                });
+
+                context.Skills.Add(new Skill
+                {
+                    SkillCode = "JSQ",
+                    SkillDescr = "JQuery",
+                });
+
+                context.Skills.Add(new Skill
+                {
+                    SkillCode = "MSSQLSVR",
+                    SkillDescr = "Microsoft SQL Server",
+                });
+
+                 context.Skills.Add(new Skill
+                {
+                    SkillCode = "MSSQLSVRAD",
+                    SkillDescr = "Microsoft SQL Server Administrator",
+                });
+
+                context.Skills.Add(new Skill
+                {
+                    SkillCode = "ORADB",
+                    SkillDescr = "ORACLE Database",
+                });
+
+                context.Skills.Add(new Skill
+                {
+                    SkillCode = "ORADBAD",
+                    SkillDescr = "ORACLE Database Administrator",
+                });
+
+                context.Skills.Add(new Skill
+                {
+                    SkillCode = "ORAPLSQL",
+                    SkillDescr = "ORACLE PL SQL",
+                });
+
+                context.Skills.Add(new Skill
+                {
+                    SkillCode = "PHPLAR",
+                    SkillDescr = "PHP Laravel",
+                });
+
+                context.Skills.Add(new Skill
+                {
+                    SkillCode = "PHPN",
+                    SkillDescr = "PHP Native",
+                });
+
+                 context.Skills.Add(new Skill
+                {
+                    SkillCode = "RJS",
+                    SkillDescr = "React JS",
+                });
+
+                context.Skills.Add(new Skill
+                {
+                    SkillCode = "VB60",
+                    SkillDescr = "MS Visual Basic 6.0",
+                });
+                context.SaveChanges();
+            }
+
+            if (context.EmployeeSkillSets.Count() == 0)
+            {
+                context.EmployeeSkillSets.Add(new EmployeeSkillSet
+                {
+                    EmployeeId = 1,
+                    SkillId = 1,
+                    ProficiencyLevel = 8
+                });
+
+                context.EmployeeSkillSets.Add(new EmployeeSkillSet
+                {
+                    EmployeeId = 1,
+                    SkillId = 2,
+                    ProficiencyLevel = 9
+                });
+
+                context.EmployeeSkillSets.Add(new EmployeeSkillSet
+                {
+                    EmployeeId = 1,
+                    SkillId = 3,
+                    ProficiencyLevel = 10
+                });
+
+                 context.EmployeeSkillSets.Add(new EmployeeSkillSet
+                {
+                    EmployeeId = 1,
+                    SkillId = 4,
+                    ProficiencyLevel = 7
+                });
+
+                 context.EmployeeSkillSets.Add(new EmployeeSkillSet
+                {
+                    EmployeeId = 1,
+                    SkillId = 5,
+                    ProficiencyLevel = 5
+                });
+
+
+                 context.EmployeeSkillSets.Add(new EmployeeSkillSet
+                {
+                    EmployeeId = 2,
+                    SkillId = 6,
+                    ProficiencyLevel = 7
+                });
+
+                context.EmployeeSkillSets.Add(new EmployeeSkillSet
+                {
+                    EmployeeId = 2,
+                    SkillId = 7,
+                    ProficiencyLevel = 8
+                });
+
+                context.EmployeeSkillSets.Add(new EmployeeSkillSet
+                {
+                    EmployeeId = 2,
+                    SkillId = 8,
+                    ProficiencyLevel = 9
+                });
+
+                 context.EmployeeSkillSets.Add(new EmployeeSkillSet
+                {
+                    EmployeeId = 2,
+                    SkillId = 9,
+                    ProficiencyLevel = 10
+                });
+
+                 context.EmployeeSkillSets.Add(new EmployeeSkillSet
+                {
+                    EmployeeId = 2,
+                    SkillId = 11,
+                    ProficiencyLevel = 2
+                });
+                context.SaveChanges();
+            }
+
+            if (context.ProjectTypes.Count() == 0) {
+                context.ProjectTypes.Add(new ProjectType
+                {
+                    TypeDescription = "Development" 
+                });
+                context.ProjectTypes.Add(new ProjectType
+                {
+                    TypeDescription = "Maintenace and Support" 
+                });
+
+                context.SaveChanges();
+            }   
+
+            if (context.ProjectTerms.Count() == 0) {
+                context.ProjectTerms.Add(new ProjectTerms
+                {
+                    TermDescription = "Monthly" 
+                });
+                context.ProjectTerms.Add(new ProjectTerms
+                {
+                    TermDescription = "Quarterly" 
+                });
+                context.ProjectTerms.Add(new ProjectTerms
+                {
+                    TermDescription = "Annually" 
+                });
+
+                context.SaveChanges();
+            }
+
+            if (context.Currencies.Count() == 0) {
+                context.Currencies.Add(new Currency {
+                    CurrencyAbbr = "PHP" ,
+                    CurrencyDescription = "Philippine Peso"
+                });
+                context.Currencies.Add(new Currency {
+                    CurrencyAbbr = "SGD" ,
+                    CurrencyDescription = "Singapore Dollar"
+                });
+                context.Currencies.Add(new Currency {
+                    CurrencyAbbr = "USD" ,
+                    CurrencyDescription = "United State Dollar"
+                });
+                context.Currencies.Add(new Currency {
+                    CurrencyAbbr = "YEN" ,
+                    CurrencyDescription = "Japaness Yen"
+                });
+
+                context.SaveChanges();
+            }
+
+            if (context.ProjectPositions.Count() == 0) { 
+                context.ProjectPositions.Add(new ProjectPosition {
+                    PositionDescription = "Project Group Manager"
+                });
+                context.ProjectPositions.Add(new ProjectPosition {
+                    PositionDescription = "Project Manager"
+                });
+                 context.ProjectPositions.Add(new ProjectPosition {
+                    PositionDescription = "Project Assistant Manager"
+                });
+                context.ProjectPositions.Add(new ProjectPosition {
+                    PositionDescription = "Project Team Leader"
+                });
+                context.ProjectPositions.Add(new ProjectPosition {
+                    PositionDescription = "Project Assistant Team Leader"
+                });
+                context.ProjectPositions.Add(new ProjectPosition {
+                    PositionDescription = "Project Senior Developer"
+                });
+                context.ProjectPositions.Add(new ProjectPosition {
+                    PositionDescription = "Project Junior Developer"
+                });
+                context.ProjectPositions.Add(new ProjectPosition {
+                    PositionDescription = "Bridge Engineer"
+                });
+
+                context.SaveChanges();
+            } 
+
+
+            if (context.Projects.Count() == 0) { 
+                context.Projects.Add(new Project {
+                    Code  = "PROJ-ZOZOTOWN",
+                    CustomerId = 1,
+                    TypeId = 2,
+                    Name = "ZOZOTOWN eCommerce",
+                    Description = "ZOZOTOWN eCommerce enhancement",
+                    BillingCost = decimal.Parse("12345678912.987"),
+                    BillingTermID = 3,
+                    BillingCurrencyId = 4,
+                    ContractStartDate = DateTime.Parse("2019-01-01"),
+                    ContractEndDate =  DateTime.Parse("2020-01-31")
+                });
+                context.Projects.Add(new Project {
+                    Code  = "PROJ-ZOZOLP",
+                    CustomerId = 1,
+                    TypeId = 2,
+                    Name = "ZOZO Landing Page",
+                    Description = "ZOZOT Landing Page Development",
+                    BillingCost = decimal.Parse("12345678912.987"),
+                    BillingTermID = 3,
+                    BillingCurrencyId = 4,
+                    ContractStartDate = DateTime.Parse("2019-01-01"),
+                    ContractEndDate =  DateTime.Parse("2020-01-31")
+                });
+                context.Projects.Add(new Project {
+                    Code  = "PROJ-ZOZOMAT",
+                    CustomerId = 1,
+                    TypeId = 1,
+                    Name = "ZOZO MAT MAT",
+                    Description = "ZOZOT MAT MAT Development",
+                    BillingCost = decimal.Parse("12345678912.987"),
+                    BillingTermID = 3,
+                    BillingCurrencyId = 4,
+                    ContractStartDate = DateTime.Parse("2019-01-01"),
+                    ContractEndDate =  DateTime.Parse("2020-01-31")
+                });
+                context.Projects.Add(new Project {
+                    Code  = "IIOFC123",
+                    CustomerId = 2,
+                    TypeId = 1,
+                    Name = "II OFFICE APPLICATION",
+                    Description = "II OFFICE Development",
+                    BillingCost = decimal.Parse("12345678912.987"),
+                    BillingTermID = 3,
+                    BillingCurrencyId = 4,
+                    ContractStartDate = DateTime.Parse("2019-01-01"),
+                    ContractEndDate =  DateTime.Parse("2020-01-31")
+                });
+                context.SaveChanges();
+            }
+
+            if (context.CustomerCompanies.Count() == 0) { 
+                context.CustomerCompanies.Add(new CustomerCompany {
+                    Code  = "ZOZOCODE123",
+                    Name = "ZOZO COMPANY"
+                } ); 
+                context.CustomerCompanies.Add(new CustomerCompany {
+                    Code  = "IIOFCCODE123",
+                    Name = "II OFFICE"
+                });
+                context.SaveChanges();
+            }
+
+            if (context.ProjectEmpAssigments.Count() == 0) { 
+                context.ProjectEmpAssigments.Add(new ProjectEmpAssigment {
+                    ProjId  = 1,
+                    EmployeeId = 1,
+					PercentageAllocation = 10,
+                    PositionId = 2,
+                    AssignmentStart =  DateTime.Parse("2019-01-01"),
+                    AssignmentEnd = DateTime.Parse("2019-05-31")
+                });
+                context.ProjectEmpAssigments.Add(new ProjectEmpAssigment {
+                    ProjId  = 1, 
+                    EmployeeId = 2,
+					PercentageAllocation = 15,
+                    PositionId = 3,
+                    AssignmentStart =  DateTime.Parse("2019-01-01"),
+                    AssignmentEnd = DateTime.Parse("2019-05-31")
+                });
+                context.ProjectEmpAssigments.Add(new ProjectEmpAssigment {
+                    ProjId  = 1,
+                    EmployeeId = 3,
+					PercentageAllocation = 20,
+                    PositionId = 4,
+                    AssignmentStart =  DateTime.Parse("2019-01-01"),
+                    AssignmentEnd = DateTime.Parse("2019-05-31")
+                });
+  
+                context.ProjectEmpAssigments.Add(new ProjectEmpAssigment {
+                    ProjId  = 2,
+                    EmployeeId = 4,
+					PercentageAllocation = 25,
+                    PositionId = 2,
+                    AssignmentStart =  DateTime.Parse("2019-01-01"),
+                    AssignmentEnd = DateTime.Parse("2019-05-31")
+                });
+                context.ProjectEmpAssigments.Add(new ProjectEmpAssigment {
+                    ProjId  = 2, 
+                    EmployeeId = 5,
+					PercentageAllocation = 30,
+                    PositionId = 3,
+                    AssignmentStart =  DateTime.Parse("2019-01-01"),
+                    AssignmentEnd = DateTime.Parse("2019-05-31")
+                });
+                context.ProjectEmpAssigments.Add(new ProjectEmpAssigment {
+                    ProjId  = 2,
+                    EmployeeId = 6,
+					PercentageAllocation = 35,
+                    PositionId = 4,
+                    AssignmentStart =  DateTime.Parse("2019-01-01"),
+                    AssignmentEnd = DateTime.Parse("2019-05-31")
+                });
+             
+                context.ProjectEmpAssigments.Add(new ProjectEmpAssigment {
+                    ProjId  = 3,
+                    EmployeeId = 7,
+					PercentageAllocation = 40,
+                    PositionId = 2,
+                    AssignmentStart =  DateTime.Parse("2019-01-01"),
+                    AssignmentEnd = DateTime.Parse("2019-05-31")
+                });
+                context.ProjectEmpAssigments.Add(new ProjectEmpAssigment {
+                    ProjId  = 3, 
+                    EmployeeId = 8,
+					PercentageAllocation = 45,
+                    PositionId = 3,
+                    AssignmentStart =  DateTime.Parse("2019-01-01"),
+                    AssignmentEnd = DateTime.Parse("2019-05-31")
+                });
+                context.ProjectEmpAssigments.Add(new ProjectEmpAssigment {
+                    ProjId  = 3,
+                    EmployeeId = 9,
+					PercentageAllocation = 50,
+                    PositionId = 4,
+                    AssignmentStart =  DateTime.Parse("2019-01-01"),
+                    AssignmentEnd = DateTime.Parse("2019-05-31")
+                });
+                context.SaveChanges();
+           }
         }
     }
 }

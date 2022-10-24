@@ -97,12 +97,9 @@ const EmployeeList = ( props) => {
 		
 	}
 	
-	//<EmployeeInputSearchSemUI SubmitHandler={handleSubmit} OnChangeHandler={handleChange} OnhandleReset={handleReset} inputFormValue={inputFormValue} />
-	
-	
     return (	
 		<div>
-			
+			<EmployeeInputSearchSemUI SubmitHandler={handleSubmit} OnChangeHandler={handleChange} OnhandleReset={handleReset} inputFormValue={inputFormValue} />
 			<EmployeeTableListSemUI employees={employees} setMsgBar={props.setMsgBar} userAccessRights={props.userAccessRights}/>
 		    <CustomLoader active={showLoader} size={'small'}/>
 		</div>

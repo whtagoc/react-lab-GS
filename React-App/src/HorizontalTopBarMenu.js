@@ -122,10 +122,10 @@ const HorizontalTopBarMenu = props => {
           >
             <Icon name={"arrow down"} />
           </Menu.Item>
-
+          end wht123*/}
 
           <Menu.Item position='right'>
-            <Dropdown text={props.userSession.username} pointing className='link item'>
+            <Dropdown text={props.userSession.username}  className='link item'>
               <Dropdown.Menu>
                 <Dropdown.Item>Profile</Dropdown.Item>
                 <Dropdown.Item>Help</Dropdown.Item>
@@ -133,7 +133,7 @@ const HorizontalTopBarMenu = props => {
               </Dropdown.Menu>
             </Dropdown>
           </Menu.Item>
-            end wht123*/}
+         
           
         </Menu>
       {/* </Sidebar.Pusher>   */}
