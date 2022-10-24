@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { Form, Input, Button, Tab} from 'semantic-ui-react'
 import DatePicker from 'react-datepicker'
 import ProjectAVEDForm from './ProjectAVEDForm'
-//import ProjectEmpAssignmentList from './ProjectEmpAssignmentList'
+import ProjectEmpAssignmentList from './ProjectEmpAssignmentList'
 //import ProjectResourceAllocationEditForm from './ProjectResourceAllocationEditForm'
 
 const ProjectAVEDTabs = props => {
@@ -118,10 +118,20 @@ const ProjectAVEDTabs = props => {
                                                           projTermsOption={projTermsOption}
                                                           projCurrencyOption={projCurrencyOption}
                                                           setMsgBar={props.setMsgBar}
-														  formMode={props.tabMode}
+														                              formMode={props.tabMode}
                                                         />
                                                       </Tab.Pane> },
   ]
+
+  if (props.tabMode != "Add") {
+    panes.push({ menuItem: 'Resource Allocation ' + tabMode, render: () => <Tab.Pane>
+                                                          <ProjectEmpAssignmentList
+                                                            project={project} userAccessRights={props.userAccessRights}
+                                                            setMsgBar={props.setMsgBar}
+                                                            listMode={props.tabMode}
+                                                          />
+                                                          </Tab.Pane> })
+    }
   
   
 
